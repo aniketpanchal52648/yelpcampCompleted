@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const { descriptors, places } = require('./seedHelper');
 const cities = require('./cities');
-
-mongoose.connect('mongodb://localhost:27017/yelp-camp')
+// const url=process.env.MONGO_ATLAS;
+mongoose.connect('mongodb+srv://Aniket_yelpcamp:IHM4iVwY8ngzKfdB@cluster0.t1dqcls.mongodb.net/?retryWrites=true&w=majority')
     .then(() => {
         console.log('connected');
 
@@ -15,12 +15,12 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp')
     });
 const sample = arr => arr[Math.floor(Math.random() * arr.length)];
 const seedDB = async () => {
-    await Campground.deleteMany({});
+    // await Campground.deleteMany({});
     for (let i = 0; i < 300; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            author: '62f5fc758f290c8bcffdce98',
+            author: '62fb75e53cce3ddcbaf8b485',
             geometry: {
                 type: "Point",
                 coordinates: [cities[random1000].longitude, cities[random1000].latitude]
